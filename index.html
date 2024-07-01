@@ -36,29 +36,6 @@
           />
         </li>
         <li class="list-group-item">
-          <!-- <select id="project-type-input" class="form-select">
-            <option value="Project Type" disabled selected>
-              Project Type
-            </option>
-            <option value="Web Application (Front End)">
-              Web Application (Front End)
-            </option>
-            <option value="Web Application (Back End)">
-              Web Application (Back End)
-            </option>
-            <option value="Web Application (Full Stack)">
-              Web Application (Full Stack)
-            </option>
-            <option value="Mobile Application">
-              Mobile Application
-            </option>
-            <option value="Print Campaign">Print Campaign</option>
-            <option value="Digital Marketing Campaign">
-              Digital Marketing Campaign
-            </option>
-          </select> -->
-        </li>
-        <li class="list-group-item">
           <input
             placeholder="Task Due Date"
             autocomplete="off"
@@ -67,9 +44,17 @@
             id="taskDueDate"
           />
         </li>
+        <li><input 
+          placeholder="Task Description"
+          autocomplete="off"
+          type="text"
+          class="form-control mb-3"
+          id="task-description"
+          />
+        </li>
       </ul>
       <div class="card-footer">
-        <button type="submit" class="btn btn-custom">
+        <button type="submit" class=" addtask btn btn-custom">
           Add Project
         </button>
       </div>
