@@ -36,41 +36,26 @@
           />
         </li>
         <li class="list-group-item">
-          <!-- <select id="project-type-input" class="form-select">
-            <option value="Project Type" disabled selected>
-              Project Type
-            </option>
-            <option value="Web Application (Front End)">
-              Web Application (Front End)
-            </option>
-            <option value="Web Application (Back End)">
-              Web Application (Back End)
-            </option>
-            <option value="Web Application (Full Stack)">
-              Web Application (Full Stack)
-            </option>
-            <option value="Mobile Application">
-              Mobile Application
-            </option>
-            <option value="Print Campaign">Print Campaign</option>
-            <option value="Digital Marketing Campaign">
-              Digital Marketing Campaign
-            </option>
-          </select> -->
-        </li>
-        <li class="list-group-item">
           <input
             placeholder="Task Due Date"
             autocomplete="off"
             type="date"
             class="form-control mb-3"
-            id="taskDueDate"
+            id="task-due-date"
+          />
+        </li>
+        <li><input 
+          placeholder="Task Description"
+          autocomplete="off"
+          type="text"
+          class="form-control mb-3"
+          id="task-description"
           />
         </li>
       </ul>
       <div class="card-footer">
         <button type="submit" class="btn btn-custom">
-          Add Project
+          Add Task
         </button>
       </div>
     </form>
@@ -81,15 +66,15 @@
 
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
-        <div id="to-do" class="card border-light mb-3 lane flex-grow-1">
+        <div id="not-yet-started" class="card border-light mb-3 lane flex-grow-1">
           <div class="card-header bg-white">
-            <h2 class="card-title mb-1">To Do</h2>
+            <h2 class="card-title mb-1">Not Yet Started</h2>
           </div>
           <div class="card-body bg-light">
-            <div id="todo-cards"></div>
+            <div id="not-yet-started-cards"></div>
           </div>
         </div>
-      </div>
+        </div>
       <div class="col-12 col-lg-4 d-flex">
         <div id="in-progress" class="card border-light mb-3 lane flex-grow-1">
           <div class="card-header bg-white">
@@ -101,12 +86,12 @@
         </div>
         </div>
         <div class="col-12 col-lg-4 d-flex">
-          <div id="done" class="card border-light mb-3 lane flex-grow-1">
+          <div id="completed" class="card border-light mb-3 lane flex-grow-1">
             <div class="card-header bg-white">
-              <h2 class="card-title mb-1">Done</h2>
+              <h2 class="card-title mb-1">Completed</h2>
             </div>
             <div class="card-body bg-light">
-              <div id="done-cards"></div>
+              <div id="completed-cards"></div>
           </div>
           </div>
       </div>
