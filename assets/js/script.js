@@ -1,6 +1,3 @@
-// Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
 const timeDisplayEl = $('#time-display');
 const taskDisplayEl = $('#task-display');
 const taskFormEl = $('#task-form');
@@ -9,14 +6,27 @@ const taskDescriptionInputEl = $('#task-description');
 const taskDateInputEl = $('#taskDueDate');
 const addTask = $('addtask')
 
+
+// Retrieve tasks and nextId from localStorage
+function readTasksFromStorage() {
+let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) || [];
+console.log(taskList);
+return taskList, nextId
+}
+
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
     return crypto.randomUUID();
 }
 
+// function readtasksFromStorage() {
+//     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+// };
+
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-
     const taskCard = $('<div>')
     .addClass('card task-card draggable my-3')
     .attr('data-task-id', task.id);
@@ -24,7 +34,7 @@ function createTaskCard(task) {
   const cardBody = $('<div>').addClass('card-body');
   const cardDescription = $('<p>')
     .addClass('card-text')
-    .text(task.type);
+    .text(task.description);
   const cardDueDate = $('<p>')
   .addClass('card-text')
   .text(task.dueDate);
@@ -32,8 +42,23 @@ function createTaskCard(task) {
     .addClass('btn btn-danger delete')
     .text('Delete')
     .attr('data-project-id', task.id);
-  cardDeleteBtn.on('click', handleDeleteProject);
+  cardDeleteBtn.on('click', handleDeleteTask);
 
+  if (task.dueDate && task.status !== 'done') {
+    const now = dayjs();
+    const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+
+    // ? If the task is due today, make the card yellow. If it is overdue, make it red.
+    if (now.isSame(taskDueDate, 'day')) {
+      taskCard.addClass('bg-warning text-white');
+    } else if (now.isAfter(taskDueDate)) {
+      taskCard.addClass('bg-danger text-white');
+      cardDeleteBtn.addClass('border-light');
+    }
+
+  cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
+  taskCard.append(cardHeader, cardBody);
+  return taskCard
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -57,9 +82,8 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
-    event.preventDefault()
-    console.log(event)
-    
+    event.preventDefault();
+    console.log(event);
       
         // ? Read user input from the form
         const taskName = taskNameInputEl.val().trim();
@@ -76,10 +100,7 @@ function handleAddTask(event) {
         };
 
     // (which means the task variable will be equal to `null`) and we will need it to be initialized to an empty array.
-function readtasksFromStorage() {
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    };
+
 
 const task = readtasksFromStorage();
   tasks.push(newTask);
@@ -97,10 +118,10 @@ const task = readtasksFromStorage();
 }
 
 
- addTask.on('submit', handleAddTask);
+//  addTask.on('submit', handleAddTask);
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event){
+function handleDeleteTask(event) {
     const taskId = $(this).attr('data-project-id');
     const tasks = readTasksFromStorage();
   
@@ -110,77 +131,78 @@ function handleDeleteTask(event){
         tasks.splice(tasks.indexOf(task), 1);
       }
     });
-  
-    // ? We will use our helper function to save the projects to localStorage
-    saveTasksToStorage(tasks);
-  
-    // ? Here we use our other function to print projects back to the screen
-    printProjectData();
 }
-
-// Todo: create a function to handle dropping a task into a new status lane
-function handleDrop(event, ui) {
- // ? Read projects from localStorage
- const tasks = readtasksFromStorage();
-
- // ? Get the project id from the event
- const taskId = ui.draggable[0].dataset.taskId;
-
- // ? Get the id of the lane that the card was dropped into
- const newStatus = event.target.id;
-
- for (let task of tasks) {
-   // ? Find the project card by the `id` and update the project status.
-   if (task.id === taskId) {
-     task.status = newStatus;
-   }
- }
- // ? Save the updated projects array to localStorage (overwritting the previous one) and render the new project data to the screen.
- localStorage.setItem('tasks', JSON.stringify(tasks));
- printProjectData();
-}
-
-function printProjectData() {
-    const tasks = readtasksFromStorage();
   
-    // ? Empty existing project cards out of the lanes
-    const todoList = $('#todo-cards');
-    todoList.empty();
+//     // ? We will use our helper function to save the projects to localStorage
+//     saveTasksToStorage(tasks);
   
-    const inProgressList = $('#in-progress-cards');
-    inProgressList.empty();
-  
-    const doneList = $('#done-cards');
-    doneList.empty();
-  
-    // ? Loop through projects and create project cards for each status
-    for (let task of tasks) {
-      if (task.status === 'to-do') {
-        todoList.append(createTaskCard(task));
-      } else if (task.status === 'in-progress') {
-        inProgressList.append(createTaskCard(task));
-      } else if (task.status === 'done') {
-        doneList.append(createTaskCard(task));
-      }
-    }
-}
+//     // ? Here we use our other function to print projects back to the screen
+//     printProjectData();
+// }
 
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
-$(document).ready(function () {
+// // Todo: create a function to handle dropping a task into a new status lane
+// function handleDrop(event, ui) {
+//  // ? Read projects from localStorage
+//  const tasks = readtasksFromStorage();
+
+//  // ? Get the project id from the event
+//  const taskId = ui.draggable[0].dataset.taskId;
+
+//  // ? Get the id of the lane that the card was dropped into
+//  const newStatus = event.target.id;
+
+//  for (let task of tasks) {
+//    // ? Find the project card by the `id` and update the project status.
+//    if (task.id === taskId) {
+//      task.status = newStatus;
+//    }
+//  }
+//  // ? Save the updated projects array to localStorage (overwritting the previous one) and render the new project data to the screen.
+//  localStorage.setItem('tasks', JSON.stringify(tasks));
+//  printProjectData();
+// }
+
+// function printProjectData() {
+//     const tasks = readtasksFromStorage();
+  
+//     // ? Empty existing project cards out of the lanes
+//     const todoList = $('#todo-cards');
+//     todoList.empty();
+  
+//     const inProgressList = $('#in-progress-cards');
+//     inProgressList.empty();
+  
+//     const doneList = $('#done-cards');
+//     doneList.empty();
+  
+//     // ? Loop through projects and create project cards for each status
+//     for (let task of tasks) {
+//       if (task.status === 'to-do') {
+//         todoList.append(createTaskCard(task));
+//       } else if (task.status === 'in-progress') {
+//         inProgressList.append(createTaskCard(task));
+//       } else if (task.status === 'done') {
+//         doneList.append(createTaskCard(task));
+//       }
+//     }
+// }
+
+// // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// $(document).ready(function () {
 
     
-// ? When the document is ready, print the project data to the screen and make the lanes droppable. Also, initialize the date picker.
-    // ? Print project data to the screen on page load if there is any
-    printProjectData();
+// // ? When the document is ready, print the project data to the screen and make the lanes droppable. Also, initialize the date picker.
+//     // ? Print project data to the screen on page load if there is any
+//     printProjectData();
   
-    $('#taskDueDate').datepicker({
-      changeMonth: true,
-      changeYear: true,
-    });
+//     $('#taskDueDate').datepicker({
+//       changeMonth: true,
+//       changeYear: true,
+//     });
   
-    // ? Make lanes droppable
-    $('.lane').droppable({
-      accept: '.draggable',
-      drop: handleDrop,
-    });
-});
+//     // ? Make lanes droppable
+//     $('.lane').droppable({
+//       accept: '.draggable',
+//       drop: handleDrop,
+//     });
+// });
