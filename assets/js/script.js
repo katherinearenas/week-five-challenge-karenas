@@ -4,7 +4,27 @@ const taskFormEl = $("#task-form");
 const taskNameInputEl = $("#task-name-input");
 const taskDescriptionInputEl = $("#task-description");
 const taskDateInputEl = $("#task-due-date");
-const addTask = $("addtask");
+const modalInputForm = $("#modal-content");
+// const modalBtn = $("#modal-btn");
+const addTask = $("#add-task-btn");
+
+// const myModal = document.getElementById('modal')
+// const testModal = document.getElementById('exampleModal')
+
+// myModal.addEventListener('shown.bs.modal', function () {
+//   testModal.focus()
+// })
+
+
+// function modalShow() {
+//   $("#modal").show(1000);
+// }
+
+// function modalHide() {
+//   $("#modal").hide(1000)
+// }
+
+// $("#modal-btn").on("click", modalShow());
 
 // Retrieve tasks and nextId from localStorage
 function readTasksFromStorage() {
@@ -17,6 +37,20 @@ function saveTasksToStorage(tasks) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   console.log(tasks);
 }
+
+// 
+
+
+// function openModal() {
+//   $("#modal-content").attr("display", "block");
+//   console.log("i'm here")
+// }
+// modalBtn.on("click", openModal);
+
+// function closeModal() {
+//   modalInputForm.attr("display", "none");
+//   console.log("here too")
+// }
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -280,4 +314,20 @@ $(document).ready(function () {
     accept: ".draggable",
     drop: handleDrop,
   });
+
+const myModal = document.getElementById('modal')
+const testModal = document.getElementById('exampleModal')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  testModal.focus()
+})
+
+  // $("#modal-btn-open").click(function () {
+  //   $('#modal').modal('show');
+  // });
+
+  // $("#modal-btn-close").click(function () {
+  //   $('#modal').modal('hide');
+  // });
+
 });

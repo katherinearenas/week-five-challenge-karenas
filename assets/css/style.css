@@ -21,6 +21,10 @@ h6 {
   font-weight: 700;
 }
 
+#modal{
+display: none;
+
+}
 
 
 .swim-lanes {
