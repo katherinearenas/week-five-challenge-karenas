@@ -1,5 +1,5 @@
 # week-five-challenge-karenas
-=======
+
 Purpose:
 
 The purpose of this project is to allow a team of users to manage project tasks by filtering them into one of three categories, not yet started, in progress and completed.
@@ -13,3 +13,8 @@ Goals Accomplished:
 Users are able to track the progress of tasks via the task list allowing for easy task management.
 
 deployed using gitHub pages at [https://katherinearenas.github.io/week-five-challenge-karenas/](https://katherinearenas.github.io/week-five-challenge-karenas/)
+This is a screenshot of the Task Board with one Past due task, one in-progress task, and one completed task:
+![Task Board Screenshot](assets/js/taskboardscreenshotkarenas.png "Task Board Screenshot")
+
+This is a screenshot of the Modal Add Task Form:
+![Modal Form Screenshot](assets/js/modalscreenshotkarenas.png "Modal Form Screenshot")
