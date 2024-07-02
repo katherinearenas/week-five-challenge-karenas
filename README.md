@@ -12,6 +12,8 @@ Goals Accomplished:
 
 Users are able to track the progress of tasks via the task list allowing for easy task management.
 
+Notes: I refactored code from class materials and had a tutor and instructor help. The modal form is refactored from a bootstrap example form [found here](https://getbootstrap.com/docs/5.0/components/modal/#modal-components).
+
 deployed using gitHub pages at [https://katherinearenas.github.io/week-five-challenge-karenas/](https://katherinearenas.github.io/week-five-challenge-karenas/)
 This is a screenshot of the Task Board with one Past due task, one in-progress task, and one completed task:
 ![Task Board Screenshot](assets/taskboardscreenshotkarenas.png "Task Board Screenshot")
