@@ -14,7 +14,7 @@ Users are able to track the progress of tasks via the task list allowing for eas
 
 deployed using gitHub pages at [https://katherinearenas.github.io/week-five-challenge-karenas/](https://katherinearenas.github.io/week-five-challenge-karenas/)
 This is a screenshot of the Task Board with one Past due task, one in-progress task, and one completed task:
-![Task Board Screenshot](assets/js/taskboardscreenshotkarenas.png "Task Board Screenshot")
+![Task Board Screenshot](assets/taskboardscreenshotkarenas.png "Task Board Screenshot")
 
 This is a screenshot of the Modal Add Task Form:
-![Modal Form Screenshot](assets/js/modalscreenshotkarenas.png "Modal Form Screenshot")
+![Modal Form Screenshot](assets/modalscreenshotkarenas.png "Modal Form Screenshot")
