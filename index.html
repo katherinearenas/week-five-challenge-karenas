@@ -10,7 +10,6 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Task Board</title>
 </head>
@@ -20,10 +19,76 @@
     <h1 class="display-3">Task Board</h1>
     <p class="lead">A simple Kanban board for task management</p>
   </header>
-  <div class="container">
-    <div class="text-center mb-5">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+  <div class="container"> 
+     <div class="text-center mb-5">
+      <button id="modal-btn-open" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-form">Add Task</button>
     </div>
+  </div>
+<!-- Button trigger modal test
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal test-->
+<div class="modal fade" id="modal-form" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Add Your Task!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="task-form">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <input
+                id="task-name-input"
+                type="text"
+                class="form-control"
+                placeholder="Task Name"
+                aria-label="Task Name"
+              />
+            </li>
+            <li class="list-group-item">
+              <input
+                placeholder="Task Due Date"
+                autocomplete="off"
+                type="date"
+                class="form-control mb-3"
+                id="task-due-date"
+              />
+            </li>
+            <li class="list-group-item"><input 
+              placeholder="Task Description"
+              autocomplete="off"
+              type="text"
+              class="form-control mb-3"
+              id="task-description"
+              />
+            </li>
+          </ul>
+          <div class="card-footer">
+            <button id="add-task-btn" type="submit" class="btn btn-success">
+              Add Task
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Test Modal-->
+ <!-- <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <p>I'm a test Modal!</p>
+  <button id="modal-btn-close" type="button" class="btn btn-close" data-bs-dismiss="modal" data-bs-target="#modal">Close Modal</button>
+</div>
+  </div> -->
+     <!-- Modal content -->
+ <!-- <div id="modal-content" > #class="modal"
     <form id="task-form">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -44,7 +109,7 @@
             id="task-due-date"
           />
         </li>
-        <li><input 
+        <li class="list-group-item"><input 
           placeholder="Task Description"
           autocomplete="off"
           type="text"
@@ -54,14 +119,13 @@
         </li>
       </ul>
       <div class="card-footer">
-        <button type="submit" class="btn btn-custom">
+        <button id="add-task-btn" type="submit" class="btn btn-success">
           Add Task
         </button>
       </div>
     </form>
-  </div>
-</div>
-
+  </div>-->
+<!-- </div> -->
     <!-- Todo: Create a modal with a form to add tasks -->
 
     <div class="row swim-lanes text-center justify-content-between">
